@@ -17,18 +17,6 @@ app.get("/obrasdearte", function (req, res) {
   let connection = dbConnection();
   let mysql = require("mysql");
 
-  // let connection = mysql.createConnection({
-  //   host: 'localhost',
-  //   user: 'ifsp',
-  //   password: 'ifsp',
-  //   database: 'museum'
-  // });
-
-  // connection.query(sql, function (error, result) {
-  //   console.log(result);
-  //   console.log(error);
-  // });
-
   connection.connect(function (err) {
     if (err) throw err;
     console.log("Conectado");
