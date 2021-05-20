@@ -5,6 +5,22 @@
     <link rel="stylesheet" type="text/css" href="portinari.css" />
   </head>
   <body>
-    <h1>Obras do Candido Portinari</h1>
+    <div class="container">
+      <h1>Obras do Candido Portinari</h1>
+      <row>
+        <% for(let i=0; i<obrasdearte.length; i++) {%>
+            <div class="card" style="width: 30rem;">
+              <img src="<%= obrasdearte[i].urlimagem%>" class="card-img-top" alt="<%= obrasdearte[i].nome%>">
+              <div>
+                <h5 class="card-title">
+                  <%= obrasdearte[i].nome%>
+                </h5>
+                <p class="card-text">
+                  <%= obrasdearte[i].artista%>
+                </p>
+              </div>
+            </div>
+        <%}%>
+      </row>
   </body>
 </html>

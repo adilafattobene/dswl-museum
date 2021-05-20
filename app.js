@@ -21,7 +21,18 @@ app.get("/tarsila", function (req, res) {
 });
 
 app.get("/portinari", function (req, res) {
-  res.render("portinari.ejs");
+  let connection = dbConnection();
+
+  connection.connect(function (err) {
+    if (err) throw err;
+    console.log("Conectado");
+  });
+
+  let sql = "select * from obrasdearte where artista = 'Cândido Portinari';";
+
+  connection.query(sql, function (err, result) {
+    res.render("portinari.ejs", { obrasdearte: result });
+  });
 });
 
 app.get("/obrasdearte", function (req, res) {
