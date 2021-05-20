@@ -7,3 +7,7 @@ app.get("/", function (req, res) {
 app.get("/tarsila", function (req, res) {
   res.render('tarsila.ejs');
 });
+
+app.get("/portinari", function (req, res) {
+    res.render('portinari.ejs');
+});
