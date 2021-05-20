@@ -15,14 +15,15 @@ app.get("/portinari", function (req, res) {
 
 app.get("/obrasdearte", function (req, res) {
   let connection = dbConnection();
-  let mysql = require("mysql");
 
   connection.connect(function (err) {
     if (err) throw err;
     console.log("Conectado");
   });
+
   let sql = "select * from obrasdearte";
+
   connection.query(sql, function (err, result) {
-    res.send(result);
+    res.render("home.ejs", { obrasdearte: result });
   });
 });
