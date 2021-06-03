@@ -9,4 +9,10 @@ module.exports = {
 
     connection.query(sql, callback);
   },
+
+  getAllPortinari: function (connection, callback) {
+    let sql = "select * from obrasdearte where artista = 'Cândido Portinari';";
+
+    connection.query(sql, callback);
+  },
 };
