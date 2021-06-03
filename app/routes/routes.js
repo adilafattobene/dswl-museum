@@ -1,4 +1,5 @@
 const dbConnection = require("../../config/dbServer");
+const { getAll } = require("../controllers/obrasdearte");
 
 module.exports = {
   home: function (app) {
@@ -56,18 +57,7 @@ module.exports = {
 
   obrasdearte: function (app) {
     app.get("/obrasdearte", function (req, res) {
-      let connection = dbConnection();
-
-      connection.connect(function (err) {
-        if (err) throw err;
-        console.log("Conectado");
-      });
-
-      let sql = "select * from obrasdearte";
-
-      connection.query(sql, function (err, result) {
-        res.render("home.ejs", { obrasdearte: result });
-      });
+      getAll(app, req, res);
     });
   },
 };
