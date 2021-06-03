@@ -1,4 +1,5 @@
 const dbConnection = require("../../config/dbServer");
+const { getAllFotos } = require("../models/fotos");
 
 module.exports.getAllPhotos = function (app, req, res) {
   let connection = dbConnection();
@@ -8,9 +9,7 @@ module.exports.getAllPhotos = function (app, req, res) {
     console.log("Conectado");
   });
 
-  let sql = "select * from fotos;";
-
-  connection.query(sql, function (err, result) {
+  getAllFotos(connection, function (err, result) {
     res.render("fotos.ejs", { fotos: result });
   });
 };
