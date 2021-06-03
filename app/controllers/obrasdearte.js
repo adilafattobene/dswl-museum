@@ -1,5 +1,5 @@
 const dbConnection = require("../../config/dbServer");
-const { getAllObrasDeArte } = require("../models/obrasdearte");
+const { getAllObrasDeArte, getAllTarsila } = require("../models/obrasdearte");
 
 module.exports.getAll = function (app, req, res) {
   let connection = dbConnection();
@@ -22,9 +22,7 @@ module.exports.getTarsila = function (app, req, res) {
     console.log("Conectado");
   });
 
-  let sql = "select * from obrasdearte where artista = 'Tarsila do Amaral';";
-
-  connection.query(sql, function (err, result) {
+  getAllTarsila(connection, function (err, result) {
     res.render("tarsila.ejs", { obrasdearte: result });
   });
 };
