@@ -1,21 +1,11 @@
 const dbConnection = require("../../config/dbServer");
+const { getAllPhotos } = require("../controllers/fotos");
 const { getAll, getTarsila } = require("../controllers/obrasdearte");
 
 module.exports = {
   home: function (app) {
     app.get("/", function (req, res) {
-      let connection = dbConnection();
-
-      connection.connect(function (err) {
-        if (err) throw err;
-        console.log("Conectado");
-      });
-
-      let sql = "select * from fotos;";
-
-      connection.query(sql, function (err, result) {
-        res.render("fotos.ejs", { fotos: result });
-      });
+      getAllPhotos(app, req, res);
     });
   },
 
