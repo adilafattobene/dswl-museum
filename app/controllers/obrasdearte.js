@@ -71,7 +71,11 @@ module.exports.getPortinari = function (app, req, res) {
   });
 };
 
-module.exports.insertObraDeArte = function (app, req, res) {
+module.exports.insertObraDeArte = function (app, req, res, errors) {
+  if (errors) {
+    console.log(errors);
+  }
+
   let obra = req.body;
   let connection = dbConnection();
 
@@ -88,7 +92,7 @@ module.exports.insertObraDeArte = function (app, req, res) {
   });
 
   insertObraDeArte(obra, connection, function (err, result) {
-    if(err) logger.log({ level: "error", message: "Erro ao cadastrar obra" });
+    if (err) logger.log({ level: "error", message: "Erro ao cadastrar obra" });
     logger.log({ level: "info", message: "Página de inserir acessada." });
 
     res.redirect("/obrasdearte");

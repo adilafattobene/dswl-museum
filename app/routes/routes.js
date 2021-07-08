@@ -6,6 +6,7 @@ const {
   getPortinari,
   insertObraDeArte,
 } = require("../controllers/obrasdearte");
+const { check, validationResult } = require("express-validator");
 
 module.exports = {
   home: function (app) {
@@ -39,8 +40,26 @@ module.exports = {
   },
 
   obrasdearteSave: function (app) {
-    app.post("/obrasdearte/save", function (req, res) {
-      insertObraDeArte(app, req, res);
-    });
+    app.post(
+      "/obrasdearte/save",
+      [
+        check("name")
+          .isLength({ min: 5 })
+          .withMessage("Nome deve ter mais do que 5 caracteres"),
+        check("artist")
+          .isLength({ min: 5 })
+          .withMessage("Artista deve ter mais do que 5 caracteres"),
+        check("year")
+          .isLength({ min: 4, max: 5 })
+          .isNumeric()
+          .withMessage(
+            "Ano deve ser númerico e ter mais do que 4 e no máximo 5 caracteres"
+          ),
+        check("url").isURL().isLength({ min: 5 }).withMessage("URL invalida"),
+      ],
+      function (req, res) {
+        insertObraDeArte(app, req, res, validationResult(req));
+      }
+    );
   },
 };
