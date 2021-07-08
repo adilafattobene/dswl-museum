@@ -12,4 +12,7 @@ app.set("views", "./app/views");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 module.exports = app;
