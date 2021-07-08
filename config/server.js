@@ -9,6 +9,7 @@ app.listen(port, function () {
 });
 
 app.set("views", "./app/views");
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 module.exports = app;
