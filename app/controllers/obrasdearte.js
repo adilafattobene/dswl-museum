@@ -71,12 +71,14 @@ module.exports.getPortinari = function (app, req, res) {
   });
 };
 
-module.exports.insertObraDeArte = function (app, req, res, errors) {
-  if (errors) {
-    console.log(errors);
+module.exports.insertObraDeArte = function (app, req, res, err) {
+  let obra = req.body;
+
+  if (err) {
+    res.render("insertPage.ejs", { obra, errors: err.array() });
+    return;
   }
 
-  let obra = req.body;
   let connection = dbConnection();
 
   connection.connect(function (err) {

@@ -35,7 +35,7 @@ module.exports = {
 
   obrasdeartePost: function (app) {
     app.get("/obrasdearte/insert", function (req, res) {
-      res.render("insertPage");
+      res.render("insertPage", { obra: "", errors: "" });
     });
   },
 

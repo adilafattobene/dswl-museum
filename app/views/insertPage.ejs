@@ -10,18 +10,31 @@
   </head>
   <body>
     <h1>Formulário de inclusão de Obra de Arte</h1>
+    <section>
+      <% if(errors) { %>
+        <ul>
+          <% for(let i=0; i<errors.length; i++) { %>
+            <li>
+              <%= errors[i].msg %>
+            </li>
+          <% } %>
+        </ul>
+      <% } %>
+    </section>
     <form action="/obrasdearte/save" method="post">
-      <input type="text" name="name" placeholder="Digite o nome da obra:" />
-      <input type="number" name="year" placeholder="Digite o ano da obra:" />
+      <input type="text" name="name" placeholder="Digite o nome da obra:" value=<%= obra.name%> />
+      <input type="number" name="year" placeholder="Digite o ano da obra:" value=<%= obra.year%>/>
       <input
         type="text"
         name="artist"
         placeholder="Digite o nome da autora ou autor da obra:"
+        value=<%= obra.artist%>
       />
       <input
         type="text"
         name="url"
         placeholder="Digite a url da foto da imagem:"
+        value=<%= obra.url%>
       />
       <input type="submit" value="ENVIAR" />
     </form>
