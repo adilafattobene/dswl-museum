@@ -1,6 +1,8 @@
 const dbConnection = require("../../config/dbServer");
 const { getAllFotos } = require("../models/fotos");
 
+const logger = require("../../config/logger");
+
 module.exports.getAllPhotos = function (app, req, res) {
   let connection = dbConnection();
 
