@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>Formulário de inclusão de Obra de Arte</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <h1>Formulário de inclusão de Obra de Arte</h1>
+    <form action="/obrasdearte/save" method="post">
+      <input type="text" name="name" placeholder="Digite o nome da obra:" />
+      <input type="number" name="year" placeholder="Digite o ano da obra:" />
+      <input
+        type="text"
+        name="artist"
+        placeholder="Digite o nome da autora ou autor da obra:"
+      />
+      <input
+        type="text"
+        name="url"
+        placeholder="Digite a url da foto da imagem:"
+      />
+      <input type="submit" value="ENVIAR" />
+    </form>
+  </body>
+</html>

@@ -4,6 +4,7 @@ const {
   getAll,
   getTarsila,
   getPortinari,
+  insertObraDeArte,
 } = require("../controllers/obrasdearte");
 
 module.exports = {
@@ -28,6 +29,18 @@ module.exports = {
   obrasdearte: function (app) {
     app.get("/obrasdearte", function (req, res) {
       getAll(app, req, res);
+    });
+  },
+
+  obrasdeartePost: function (app) {
+    app.get("/obrasdearte/insert", function (req, res) {
+      res.render("insertPage");
+    });
+  },
+
+  obrasdearteSave: function (app) {
+    app.post("/obrasdearte/save", function (req, res) {
+      insertObraDeArte(app, req, res);
     });
   },
 };

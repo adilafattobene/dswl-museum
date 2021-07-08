@@ -15,4 +15,22 @@ module.exports = {
 
     connection.query(sql, callback);
   },
+
+  insertObraDeArte: function (obra, connection, callback) {
+    let sql = String(
+      "insert into obrasdearte (nome, artista, ano, urlimagem) values('" +
+        obra.name +
+        "', '" +
+        obra.artist +
+        "', '" +
+        obra.year +
+        "', '" +
+        obra.url +
+        "')"
+    );
+
+    console.log(sql);
+
+    connection.query(sql, callback);
+  },
 };

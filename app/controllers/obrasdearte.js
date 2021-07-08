@@ -3,6 +3,7 @@ const {
   getAllObrasDeArte,
   getAllTarsila,
   getAllPortinari,
+  insertObraDeArte,
 } = require("../models/obrasdearte");
 
 const logger = require("../../config/logger");
@@ -67,5 +68,29 @@ module.exports.getPortinari = function (app, req, res) {
   getAllPortinari(connection, function (err, result) {
     logger.log({ level: "info", message: "Página Portinari acessada." });
     res.render("portinari.ejs", { obrasdearte: result });
+  });
+};
+
+module.exports.insertObraDeArte = function (app, req, res) {
+  let obra = req.body;
+  let connection = dbConnection();
+
+  connection.connect(function (err) {
+    if (err) {
+      logger.log({ level: "error", message: err.message });
+
+      let error =
+        "<h1> Ocorreu algum erro com o servidor: </h1><h2>" + err.code + "<h2>";
+      res.status(500).send(error);
+    }
+
+    console.log("Conectado");
+  });
+
+  insertObraDeArte(obra, connection, function (err, result) {
+    if(err) logger.log({ level: "error", message: "Erro ao cadastrar obra" });
+    logger.log({ level: "info", message: "Página de inserir acessada." });
+
+    res.redirect("/obrasdearte");
   });
 };
